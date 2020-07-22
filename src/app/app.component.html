@@ -15,13 +15,13 @@
         <tbody>
           <tr *ngFor="let user of users">
             <!-- <td>{{ user.id }}</td> -->
-            <td>{{ user.Name }}</td>
-            <td>{{ user.Number }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.number }}</td>
 
             <td>
               <button type="button" class="btn btn-info btn-sm mr-2" (click)="showEditUserForm(user)">Edit</button>
 
-              <button type="button" class="btn btn-danger btn-sm" (click)="removeUser(user)">Delete</button>
+              <button type="button" class="btn btn-danger btn-sm" (click)="deletecontact(user.id)">Delete</button>
             </td>
           </tr>
         </tbody>

@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 @NgModule({
@@ -16,6 +18,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
+    HttpClientModule,
     ReactiveFormsModule
   ],
   providers: [],
