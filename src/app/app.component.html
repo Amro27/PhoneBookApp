@@ -1,0 +1,100 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mt-4">
+      <h1 class="text-center">User List</h1>
+      <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+      <table id="myTable" class="table table-bordered table-striped table-hover">
+        <thead>
+          <tr>
+            <!-- <th class="text-center">ID</th> -->
+            <th class="text-center">Name</th>
+            <th class="text-center">Number</th>
+            <th class="text-center">&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <!-- <td>{{ user.id }}</td> -->
+            <td>{{ user.Name }}</td>
+            <td>{{ user.Number }}</td>
+
+            <td>
+              <button type="button" class="btn btn-info btn-sm mr-2" (click)="showEditUserForm(user)">Edit</button>
+
+              <button type="button" class="btn btn-danger btn-sm" (click)="removeUser(user)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="btn btn-success" (click)="showAddUserForm()">Add New User</button>
+
+      <div class="mt-4">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" *ngIf="userForm" #loginForm="ngForm">
+          <h2>Add New User</h2>
+          <div class="form-group">
+              <label>Name</label>
+              <input name="password" [(ngModel)]="newUser.Name" type="text" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted &amp;&amp; registerForm.controls.password.errors }"  />
+              <div *ngIf="registerForm.controls.password.errors" class="text-danger">
+                  <div *ngIf="registerForm.controls.password.errors.required">Name is required</div>
+                  <div *ngIf="registerForm.controls.password.errors.minlength">Name must be at least 3 characters</div>
+                  <div *ngIf="registerForm.controls.password.errors.pattern">Name must only contain characters</div>
+              </div>
+              <label>Number</label>
+              <input name="firstName" [(ngModel)]="newUser.Number" type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted &amp;&amp; registerForm.controls.firstName.errors }"  />
+              <div *ngIf="registerForm.controls.firstName.errors" class="text-danger">
+                  <div *ngIf="registerForm.controls.firstName.errors.required">Number is required</div>
+                  <div *ngIf="registerForm.controls.firstName.errors.minlength">Number must be 11 numbers</div>
+                  <div *ngIf="registerForm.controls.firstName.errors.pattern">Number cannnot contain characters</div>
+              </div>
+          </div>
+          <div class="form-group">
+              <button class="btn btn-primary" [disabled]="loginForm.form.invalid" (click)="saveUser(newUser)">Submit</button>
+              <button type="button" class="btn btn-warning" (click)="cancelNewUser()">Cancel</button>
+          </div>
+        </form>
+        <!-- <form *ngIf="userForm">
+          <h2>Add New User</h2>
+          <p>Name: <input type="text" name="firstName" [(ngModel)]="newUser.Name" /></p>
+          <p>Number: <input type="text" name="lastName" [(ngModel)]="newUser.Number" /></p>
+          <p>
+            <button type="button" class="btn btn-primary mr-2" (click)="saveUser(newUser)">Submit</button>
+            <button type="button" class="btn btn-warning" (click)="cancelNewUser()">Cancel</button>
+          </p>
+        </form> -->
+
+        <!-- <form *ngIf="editUserForm">
+          <h2>Edit User Details</h2>
+          <p>Name: <input type="text" name="Name" [(ngModel)]="editedUser.Name" /></p>
+          <p>Number: <input type="text" name="Number" [(ngModel)]="editedUser.Number" /></p>
+          <p>
+            <button type="button" class="btn btn-primary mr-2" (click)="updateUser()">Submit</button>
+            <button type="button" class="btn btn-warning" (click)="cancelEdits()">Cancel</button>
+          </p>
+        </form> -->
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" *ngIf="editUserForm" #loginForm="ngForm">
+          <h2>Edit User Details</h2>
+          <div class="form-group">
+              <label>Name</label>
+              <input name="password" [(ngModel)]="editedUser.Name" type="text" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted &amp;&amp; registerForm.controls.password.errors }"  />
+              <div *ngIf="registerForm.controls.password.errors" class="text-danger">
+                  <div *ngIf="registerForm.controls.password.errors.required">Name is required</div>
+                  <div *ngIf="registerForm.controls.password.errors.minlength">Name must be at least 3 characters</div>
+                  <div *ngIf="registerForm.controls.password.errors.pattern">Name must only contain characters</div>
+              </div>
+              <label>Number</label>
+              <input name="firstName" [(ngModel)]="editedUser.Number" type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted &amp;&amp; registerForm.controls.firstName.errors }"  />
+              <div *ngIf="registerForm.controls.firstName.errors" class="text-danger">
+                  <div *ngIf="registerForm.controls.firstName.errors.required">Number is required</div>
+                  <div *ngIf="registerForm.controls.firstName.errors.minlength">Number must be 11 numbers</div>
+                  <div *ngIf="registerForm.controls.firstName.errors.pattern">Number cannnot contain characters</div>
+              </div>
+          </div>
+          <div class="form-group">
+              <button class="btn btn-primary" [disabled]="loginForm.form.invalid" (click)="updateUser()">Submit</button>
+              <button type="button" class="btn btn-warning" (click)="cancelNewUser()">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
